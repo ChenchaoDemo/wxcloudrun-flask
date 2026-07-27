@@ -3,7 +3,7 @@ import logging
 from sqlalchemy.exc import OperationalError
 
 from wxcloudrun import db
-from wxcloudrun.model import Counters
+from wxcloudrun.model import Counters, Orders
 
 # 初始化日志
 logger = logging.getLogger('log')
@@ -62,3 +62,30 @@ def update_counterbyid(counter):
         db.session.commit()
     except OperationalError as e:
         logger.info("update_counterbyid errorMsg= {} ".format(e))
+
+
+def list_orders():
+    return Orders.query.order_by(Orders.id.desc()).all()
+
+
+def query_order_by_id(order_id):
+    return Orders.query.get(order_id)
+
+
+def query_order_by_no(order_no):
+    return Orders.query.filter(Orders.order_no == order_no).first()
+
+
+def save_order(order):
+    db.session.add(order)
+    db.session.commit()
+    return order
+
+
+def update_order():
+    db.session.commit()
+
+
+def delete_order(order):
+    db.session.delete(order)
+    db.session.commit()

@@ -27,6 +27,7 @@
 	"executeSQLs":[
 		"CREATE DATABASE IF NOT EXISTS flask_demo;",
 		"USE flask_demo;",
-		"CREATE TABLE IF NOT EXISTS `Counters` (`id` int(11) NOT NULL AUTO_INCREMENT, `count` int(11) NOT NULL DEFAULT 1, `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`)) ENGINE = InnoDB DEFAULT CHARSET = utf8;"
+		"CREATE TABLE IF NOT EXISTS `Counters` (`id` int(11) NOT NULL AUTO_INCREMENT, `count` int(11) NOT NULL DEFAULT 1, `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (`id`)) ENGINE = InnoDB DEFAULT CHARSET = utf8;",
+		"CREATE TABLE IF NOT EXISTS `Orders` (`id` int(11) NOT NULL AUTO_INCREMENT, `orderNo` varchar(64) NOT NULL, `customerName` varchar(100) NOT NULL, `customerPhone` varchar(32) DEFAULT NULL, `productName` varchar(200) NOT NULL, `quantity` int(11) NOT NULL DEFAULT 1, `totalAmount` decimal(12,2) NOT NULL DEFAULT 0.00, `status` varchar(32) NOT NULL DEFAULT 'pending', `address` varchar(500) DEFAULT NULL, `remark` varchar(500) DEFAULT NULL, `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (`id`), UNIQUE KEY `uk_order_no` (`orderNo`)) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4;"
 	]    
 }
