@@ -1,6 +1,6 @@
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
-from flask import render_template, request
+from flask import jsonify, render_template, request
 from sqlalchemy.exc import SQLAlchemyError
 
 from wxcloudrun import app, db
@@ -26,6 +26,15 @@ def index():
     :return: 返回index页面
     """
     return render_template('index.html')
+
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({
+        'status': 'ok',
+        'service': 'wxcloudrun-flask',
+        'api': ['/api/count', '/api/orders'],
+    })
 
 
 @app.route('/api/count', methods=['POST'])
